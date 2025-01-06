@@ -1,12 +1,39 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'truvideo-react-turbo-core-sdk';
+import { useEffect } from 'react';
+import { Text, View, StyleSheet, Button } from 'react-native';
+import { multiply, authentication, clearAuthentication } from 'truvideo-react-turbo-core-sdk';
 
 const result = multiply(3, 7);
 
 export default function App() {
+
+  useEffect(() => {
+    authentication('EPhPPsbv7e', '9lHCnkfeLl', '')
+      .then((resp) => {
+        console.log('result', resp);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  }, []);
+
+  const logOut = () => {
+    clearAuthentication()
+      .then((response) => {
+        console.log('result', response);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
   return (
     <View style={styles.container}>
       <Text>Result: {result}</Text>
+      <Button
+        onPress={logOut}
+        title="Logout..."
+        color="#eb4034"
+        accessibilityLabel="Clear authentication function will called here"
+      />
     </View>
   );
 }
