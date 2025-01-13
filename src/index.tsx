@@ -12,15 +12,28 @@ export function isAuthenticationExpired(): Promise<string> {
   return TruVideoReactTurboCoreSdk.isAuthenticationExpired();
 }
 
-export function authentication(
+export function generatePayload(): Promise<string> {
+  return TruVideoReactTurboCoreSdk.generatePayload();
+}
+
+export function initAuthentication(): Promise<string> {
+  return TruVideoReactTurboCoreSdk.initAuthentication();
+}
+
+export function authenticate(
   apiKey: string,
-  secretKey: string,
-  extenalId: string
+  payload: string,
+  signature: string,
+  externalId: string
 ): Promise<string> {
-  return TruVideoReactTurboCoreSdk.authentication(apiKey, secretKey, extenalId);
+  return TruVideoReactTurboCoreSdk.authenticate(
+    apiKey,
+    payload,
+    signature,
+    externalId
+  );
 }
 
 export function clearAuthentication(): Promise<string> {
   return TruVideoReactTurboCoreSdk.clearAuthentication();
 }
-

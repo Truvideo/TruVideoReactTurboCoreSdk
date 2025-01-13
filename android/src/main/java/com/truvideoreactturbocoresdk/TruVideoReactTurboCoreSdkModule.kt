@@ -1,12 +1,16 @@
 package com.truvideoreactturbocoresdk
 
+import android.support.annotation.NonNull
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.module.annotations.ReactModule
 import com.truvideo.sdk.core.TruvideoSdk
+import com.truvideo.sdk.core.interfaces.TruvideoSdkCallback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import truvideo.sdk.common.exceptions.TruvideoSdkException
 import java.security.InvalidKeyException
 import java.security.NoSuchAlgorithmException
 import javax.crypto.Mac
@@ -32,10 +36,44 @@ class TruVideoReactTurboCoreSdkModule(reactContext: ReactApplicationContext) :
   override fun isAuthenticationExpired(promise: Promise){
     promise.resolve(TruvideoSdk.isAuthenticationExpired())
   }
-    override fun authentication(apiKey : String , secretKey : String,extenalId: String, promise: Promise) {
-    scope.launch {
-      authenticate(apiKey, secretKey,extenalId,promise)
-    }
+
+  override fun generatePayload(promise: Promise){
+    promise.resolve(TruvideoSdk.generatePayload().toString())
+  }
+
+
+  override fun authenticate(apiKey : String, payload : String, signature : String, externalId :String,promise: Promise){
+    TruvideoSdk.authenticate(
+      apiKey = apiKey,
+      payload = payload,
+      signature = signature!!,
+      externalId = externalId, object : TruvideoSdkCallback<Unit> {
+        override fun onComplete(unit: Unit) {
+          promise.resolve("Authenticate Successful")
+        }
+
+        override fun onError(@NonNull e: TruvideoSdkException) {
+          promise.reject(e.toString())
+        }
+      }
+    )
+
+
+  }
+
+
+  override fun initAuthentication(promise: Promise){
+    TruvideoSdk.initAuthentication(object : TruvideoSdkCallback<Unit> {
+      override fun onComplete(result: Unit) {
+        promise.resolve("Init Successful")
+      }
+
+      override fun onError(exception: TruvideoSdkException) {
+        promise.reject(exception.toString())
+      }
+    })
+
+
   }
 
   // Authentication function
@@ -98,12 +136,13 @@ class TruVideoReactTurboCoreSdkModule(reactContext: ReactApplicationContext) :
       null
     }
   }
+
   // Logout function
-    override fun clearAuthentication(promise: Promise) {
+
+  override fun clearAuthentication(promise: Promise) {
     TruvideoSdk.clearAuthentication()
     promise.resolve("Logout Successful")
   }
-
 
   companion object {
     const val NAME = "TruVideoReactTurboCoreSdk"

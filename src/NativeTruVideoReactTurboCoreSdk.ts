@@ -5,10 +5,13 @@ export interface Spec extends TurboModule {
   multiply(a: number, b: number): number;
   isAuthenticated(): Promise<string>;
   isAuthenticationExpired(): Promise<string>;
-  authentication(
+  generatePayload(): Promise<string>;
+  initAuthentication(): Promise<string>;
+  authenticate(
     apiKey: string,
-    secretKey: string,
-    extenalId: string
+    payload: string,
+    signature: string,
+    externalId: string
   ): Promise<string>;
   clearAuthentication(): Promise<string>;
 }
