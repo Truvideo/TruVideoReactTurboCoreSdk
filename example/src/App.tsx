@@ -25,8 +25,8 @@ export default function App() {
       console.log('isAuthExpired', isAuthExpired);
       //generate payload for authentication
       const payload = await generatePayload();
-      const apiKey = 'YOUR-API-KEY';
-      const signature = 'YOUR-SECRET-KEY';
+      const apiKey = 'EPhPPsbv7e';
+      const signature = '9lHCnkfeLl';
       const sha256 = await toSha256String(signature, payload);
       // Authenticate user
       if (!isAuth || isAuthExpired) {
