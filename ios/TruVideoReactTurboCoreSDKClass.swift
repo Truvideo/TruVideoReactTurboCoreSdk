@@ -18,61 +18,65 @@ import TruvideoSdk
   @objc public func isAuthenticated() -> Bool {
     do {
       let isAuthenticated = try TruvideoSdk.isAuthenticated()
-      print("isAuthenticated", isAuthenticated)
+ //     print("isAuthenticated", isAuthenticated)
       return isAuthenticated
-    } catch let error {
+    } catch _ {
       return false
     }
   }
   
-  @objc public func isAuthenticationExpired()-> Bool {
+  @objc public func isAuthenticationExpired() -> Bool {
     do {
       let isExpired = try TruvideoSdk.isAuthenticationExpired()
-      print("isExpired", isExpired)
+    //  print("isExpired", isExpired)
       return isExpired
-    } catch let error {
+    } catch _ {
       return false
     }
   }
   
-  @objc public func generatePayload()-> String {
+  @objc public func generatePayload() -> String {
     do {
       let payload = try TruvideoSdk.generatePayload()
-      print("generatePayload", payload)
+  //    print("generatePayload", payload)
       return payload
     } catch let error {
-      return ""
+      return "\(error.localizedDescription)"
     }
   }
   
-  @objc public func authenticate(apiKey: String, payload: String, signature: String, externalId: String) async -> String {
-    do {
-      try await TruvideoSdk.authenticate(apiKey: apiKey, payload: payload, signature: signature, externalId: externalId)
-      print("Success....... From iOS  authenticate")
-      return "Authenticate Successfully"
-    } catch {
-      return "Authenticate Failed"
-    }
-  }
-  
-  @objc public func initAuthentication() async -> String {
-    do {
-      try await TruvideoSdk.initAuthentication()
-      print("Success....... From iOS  initAuthentication")
-      return "Authenticate Intialized..."
-    } catch {
-      return "Authenticate Failed"
-    }
-  }
-  
-  @objc public func clearAuthentication() {
+  @objc public func authenticate(apiKey: String, payload: String, signature: String, externalId: String) -> String {
     do {
       Task {
-        print("Success....... From iOS  clearAuthentication")
-
-        try TruvideoSdk.clearAuthentication()
+        try await TruvideoSdk.authenticate(apiKey: apiKey, payload: payload, signature: signature, externalId: externalId)
+  //      print("Success....... From iOS  authenticate")
+        return "Authenticate Successfully"
       }
     }
+    return "Authenticate Failed"
+  }
+  
+  @objc public func initAuthentication() -> String {
+    do {
+      Task {
+        try await TruvideoSdk.initAuthentication()
+  //      print("Success....... From iOS  initAuthentication")
+        return "Authenticate Intialized"
+      }
+    }
+    return "InitAuthenticate Failed"
+  }
+  
+  @objc public func clearAuthentication() -> String {
+    do {
+      Task {
+ //       print("Success....... From iOS  clearAuthentication")
+
+        try TruvideoSdk.clearAuthentication()
+        return "Success ClearAuthentication"
+      }
+    }
+    return "Failed ClearAuthentication"
   }
   
 }

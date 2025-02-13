@@ -14,17 +14,16 @@ RCT_EXPORT_MODULE()
 - (void)authenticate:(NSString *)apiKey payload:(NSString *)payload signature:(NSString *)signature externalId:(NSString *)externalId resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   // authenticate
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  //
-  [tvrtcsc authenticateWithApiKey:apiKey payload:payload signature:signature externalId:externalId completionHandler:{
-    //NSLog("Success....... From iOS")
-    
-  }];
+  NSString *resultAuth = [tvrtcsc authenticateWithApiKey:apiKey payload:payload signature:signature externalId:externalId];
+//  NSLog(@"Success....... From iOS %@", resultAuth);
+  resolve(resultAuth);
 }
-//
+
 - (void)clearAuthentication:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   // clearAuthentication
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  [tvrtcsc clearAuthentication];
+  NSString *isClearAuth = [tvrtcsc clearAuthentication];
+  resolve(isClearAuth);
 }
 
 - (void)generatePayload:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
@@ -37,16 +36,15 @@ RCT_EXPORT_MODULE()
 - (void)initAuthentication:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   // initAuthentication
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  [tvrtcsc initAuthenticationWithCompletionHandler:{
-    //TODO:- Manage
-  }];
+  NSString *testResult = [tvrtcsc initAuthentication];
+//  NSLog(@"%@", testResult);
+  resolve(testResult);
 }
 
 - (void)isAuthenticated:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   // isAuthenticated
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
   BOOL isAuth = [tvrtcsc isAuthenticated];  // Use BOOL instead of Boolean
-  
   // Wrap the BOOL in an NSNumber and resolve it
   resolve(@(isAuth));  // NSNumber representation of BOOL
 }
