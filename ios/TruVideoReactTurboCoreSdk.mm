@@ -14,47 +14,41 @@ RCT_EXPORT_MODULE()
 - (void)authenticate:(NSString *)apiKey payload:(NSString *)payload signature:(NSString *)signature externalId:(NSString *)externalId resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   // authenticate
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  NSString *resultAuth = [tvrtcsc authenticateWithApiKey:apiKey payload:payload signature:signature externalId:externalId];
-//  NSLog(@"Success....... From iOS %@", resultAuth);
-  resolve(resultAuth);
+  [tvrtcsc authenticateWithApiKey:apiKey payload:payload signature:signature externalId:externalId resolve:resolve reject:reject];
+
 }
 
 - (void)clearAuthentication:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   // clearAuthentication
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  NSString *isClearAuth = [tvrtcsc clearAuthentication];
-  resolve(isClearAuth);
+  [tvrtcsc clearAuthenticationWithResolve:resolve reject:reject];
+ 
 }
 
 - (void)generatePayload:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   //  generatePayload
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  NSString *payload = [tvrtcsc generatePayload];
-  resolve(payload);
+  [tvrtcsc generatePayloadWithResolve:resolve reject:reject];
+ 
 }
 
 - (void)initAuthentication:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   // initAuthentication
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  NSString *testResult = [tvrtcsc initAuthentication];
-//  NSLog(@"%@", testResult);
-  resolve(testResult);
+  [tvrtcsc initAuthenticationWithResolve:resolve reject:reject];
+
 }
 
 - (void)isAuthenticated:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   // isAuthenticated
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  BOOL isAuth = [tvrtcsc isAuthenticated];  // Use BOOL instead of Boolean
-  // Wrap the BOOL in an NSNumber and resolve it
-  resolve(@(isAuth));  // NSNumber representation of BOOL
+  [tvrtcsc isAuthenticatedWithResolve:resolve reject:reject];
 }
 
 - (void)isAuthenticationExpired:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
   //  isAuthenticationExpired
   TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
-  BOOL isAuthExpired = [tvrtcsc isAuthenticationExpired];
-  
-  resolve(@(isAuthExpired));
+  [tvrtcsc isAuthenticationExpiredWithResolve:resolve reject:reject];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
