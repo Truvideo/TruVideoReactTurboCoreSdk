@@ -50,22 +50,22 @@ import React
       Task {
         try await TruvideoSdk.authenticate(apiKey: apiKey, payload: payload, signature: signature, externalId: externalId)
   //      print("Success....... From iOS  authenticate")
-        resolve("Authenticate Successfully")
+      //  resolve("Authenticate Successfully")
       }
+    }catch let error{
+        reject("Authenticate","Authenticate Failed", NSError(domain: "Authenticate Failed", code: 400))
     }
-    reject("Authenticate","Authenticate Failed", NSError(domain: "Authenticate Failed", code: 400))
   }
   
   @objc public func initAuthentication(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock)  {
     do {
       Task {
         try await TruvideoSdk.initAuthentication()
-  //      print("Success....... From iOS  initAuthentication")
-        resolve("Authenticate Intialized")
+          resolve("Authenticate Successfully")
       }
+    }catch let error{
+        reject("Failed_InitAuthenticate","Failed InitAuthenticate", error)
     }
-    reject("Failed_InitAuthenticate","Failed InitAuthenticate", NSError(domain: "Failed InitAuthenticate", code: 400))
-   
   }
   
   @objc public func clearAuthentication(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock)  {
@@ -76,8 +76,9 @@ import React
         try TruvideoSdk.clearAuthentication()
         resolve("Success ClearAuthentication")
       }
+    }catch let error{
+        reject("Failed_Clear","Failed ClearAuthentication", NSError(domain: "Failed ClearAuthentication", code: 400))
     }
-    reject("Failed_Clear","Failed ClearAuthentication", NSError(domain: "Failed ClearAuthentication", code: 400))
   }
   
 }
