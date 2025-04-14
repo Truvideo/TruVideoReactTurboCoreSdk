@@ -6766,7 +6766,7 @@ trim-newlines@^3.0.0:
 trim-newlines@^4.0.2:
   version "4.1.1"
 
-"truvideo-react-turbo-core-sdk-example@file:/Users/mac/Desktop/react-native-turbo/TruVideoReactTurboCoreSdk/example":
+"truvideo-react-turbo-core-sdk-example@file:D:\\Anurag\\ReactNative\\turbo\\TruVideoReactTurboCoreSdk\\example":
   version "0.0.1"
   resolved "file:example"
   dependencies:
@@ -6801,6 +6801,9 @@ tsutils@^3.21.0:
   version "3.21.0"
   dependencies:
     tslib "^1.8.1"
+
+turbo-windows-64@1.13.4:
+  version "1.13.4"
 
 turbo@^1.10.7:
   version "1.13.4"

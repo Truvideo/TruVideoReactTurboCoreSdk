@@ -182,7 +182,8 @@
       "android": "android/generated"
     },
     "android": {
-      "javaPackageName": "com.truvideoreactturbocoresdk"
+      "javaPackageName": "com.truvideoreactturbocoresdk",
+      "cmakeListsPath": "android/generated/jni/CMakeLists.txt"
     },
     "includesGeneratedCode": true
   },
