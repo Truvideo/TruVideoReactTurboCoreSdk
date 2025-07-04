@@ -50,7 +50,7 @@ import React
       Task {
         try await TruvideoSdk.authenticate(apiKey: apiKey, payload: payload, signature: signature, externalId: externalId)
   //      print("Success....... From iOS  authenticate")
-      //  resolve("Authenticate Successfully")
+        resolve("Authenticate Successfully")
       }
     }catch let error{
         reject("Authenticate","Authenticate Failed", NSError(domain: "Authenticate Failed", code: 400))
