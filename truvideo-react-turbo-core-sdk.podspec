@@ -15,16 +15,15 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/anuragSingh5exceptions/TruVideoReactTurboCoreSdk.git", :tag => "#{s.version}" }
   s.source_files = "ios/**/*.{h,m,mm,cpp,swift}"
   s.private_header_files = "ios/**/*.h"
+#  s.static_framework = false
+ s.vendored_frameworks = ['ios/xcframeworks/AWSCognitoIdentityProvider.xcframework','ios/xcframeworks/AWSCognitoIdentityProviderASF.xcframework','ios/xcframeworks/AWSCore.xcframework','ios/xcframeworks/AWSS3.xcframework','ios/xcframeworks/shared.xcframework','ios/xcframeworks/TruvideoSdk.xcframework']
+#  # s.static_framework = true
 
-  s.vendored_frameworks = ['ios/xcframeworks/AWSCognitoIdentityProvider.xcframework','ios/xcframeworks/AWSCognitoIdentityProviderASF.xcframework','ios/xcframeworks/AWSCore.xcframework','ios/xcframeworks/AWSS3.xcframework','ios/xcframeworks/shared.xcframework','ios/xcframeworks/TruvideoSdk.xcframework']
-  s.static_framework = true
-
-# s.pod_target_xcconfig = {
-#   'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/ios/Frameworks"',
-#   'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-#   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-# }
- 
+  # s.dependency 'truvideo-sdk-core-pod', '~> 1.0.0'
+  # s.dependency 'AWSS3'
+  # s.dependency 'AWSCore'
+  # s.dependency 'AWSCognitoIdentityProvider'
+  # s.dependency 'AWSCognitoIdentityProviderASF'
   # Use install_modules_dependencies helper to install the dependencies if React Native version >=0.71.0.
   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.
   if respond_to?(:install_modules_dependencies, true)
