@@ -1534,7 +1534,7 @@ PODS:
     - React-perflogger (= 0.76.5)
     - React-utils (= 0.76.5)
   - SocketRocket (0.7.1)
-  - truvideo-react-turbo-core-sdk (0.1.0):
+  - truvideo-react-turbo-core-sdk (1.0.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1830,7 +1830,7 @@ SPEC CHECKSUMS:
   ReactCodegen: daa13d9e48c9bdb1daac4bd694b9dd54e06681df
   ReactCommon: a6b87a7591591f7a52d9c0fec3aa05e0620d5dd3
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  truvideo-react-turbo-core-sdk: c2ae78b8907cae37939f39f7cc1b9e6eb30c0387
+  truvideo-react-turbo-core-sdk: 72725503700a65c62bd3791ec02c710681fd0350
   Yoga: fcc198acd4a55599b3468cfb6ebc526baff5f06e
 
 PODFILE CHECKSUM: 3121ff3491f5d948582d561c5af3887516048fd9

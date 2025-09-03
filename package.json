@@ -1,10 +1,24 @@
 {
-  "name": "truvideo-react-turbo-core-sdk",
-  "version": "0.1.0",
+  "name": "@trunpm/truvideo-react-turbo-core-sdk",
+  "version": "1.0.2",
+  "private": false,
   "description": "none",
-  "source": "./src/index.tsx",
-  "main": "./lib/commonjs/index.js",
-  "module": "./lib/module/index.js",
+  "keywords": [
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "homepage": "https://github.com/Truvideo/TruVideoReactTurboCoreSdk#readme",
+  "bugs": {
+    "url": "https://github.com/Truvideo/TruVideoReactTurboCoreSdk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Truvideo/TruVideoReactTurboCoreSdk.git"
+  },
+  "license": "MIT",
+  "author": "Truvideo <info@truvideo.com> (https://github.com/Truvideo)",
+  "type": "commonjs",
   "exports": {
     ".": {
       "import": {
@@ -16,6 +30,11 @@
         "default": "./lib/commonjs/index.js"
       }
     }
+  },
+  "main": "./lib/commonjs/index.js",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
   },
   "files": [
     "src",
@@ -36,6 +55,9 @@
     "!**/__mocks__",
     "!**/.*"
   ],
+  "workspaces": [
+    "example"
+  ],
   "scripts": {
     "example": "yarn workspace truvideo-react-turbo-core-sdk-example",
     "test": "jest",
@@ -44,24 +66,6 @@
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
     "release": "release-it"
-  },
-  "keywords": [
-    "react-native",
-    "ios",
-    "android"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anuragSingh5exceptions/TruVideoReactTurboCoreSdk.git"
-  },
-  "author": "Anurag singh <anurag.singh@5exceptions.com> (https://github.com/anuragSingh5exceptions)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/anuragSingh5exceptions/TruVideoReactTurboCoreSdk/issues"
-  },
-  "homepage": "https://github.com/anuragSingh5exceptions/TruVideoReactTurboCoreSdk#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
@@ -85,16 +89,19 @@
     "turbo": "^1.10.7",
     "typescript": "^5.2.2"
   },
-  "resolutions": {
-    "@types/react": "^18.2.44"
-  },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
   },
-  "workspaces": [
-    "example"
-  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "restricted"
+  },
+  "source": "./src/index.tsx",
+  "module": "./lib/module/index.js",
+  "resolutions": {
+    "@types/react": "^18.2.44"
+  },
   "packageManager": "yarn@3.6.1",
   "jest": {
     "preset": "react-native",

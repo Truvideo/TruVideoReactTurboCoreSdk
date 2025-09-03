@@ -1,6 +1,7 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
 // swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name TruvideoSdk
+import CommonCrypto
 import Foundation
 import Network
 import Swift
@@ -11,17 +12,17 @@ import _StringProcessing
 import _SwiftConcurrencyShims
 public let TruvideoSdk: any TruvideoSdk.TruvideoSdkInterface
 public protocol TruvideoSdkInterface {
-  func apiKey() throws -> Swift.String
-  func isAuthenticated() throws -> Swift.Bool
-  func isAuthenticationExpired() throws -> Swift.Bool
   #if compiler(>=5.3) && $AsyncAwait
   func authenticate(apiKey: Swift.String, payload: Swift.String, signature: Swift.String, externalId: Swift.String) async throws
   #endif
+  func apiKey() throws -> Swift.String
   func clearAuthentication() throws
   func generatePayload() throws -> Swift.String
   #if compiler(>=5.3) && $AsyncAwait
   func initAuthentication() async throws
   #endif
+  func isAuthenticated() throws -> Swift.Bool
+  func isAuthenticationExpired() throws -> Swift.Bool
 }
 extension TruvideoSdk.TruvideoSdkInterface {
   #if compiler(>=5.3) && $AsyncAwait
