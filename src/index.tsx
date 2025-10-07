@@ -1,15 +1,50 @@
 import TruVideoReactTurboCoreSdk from './NativeTruVideoReactTurboCoreSdk';
 
-export function multiply(a: number, b: number): number {
-  return TruVideoReactTurboCoreSdk.multiply(a, b);
+// export function multiply(a: number, b: number): number {
+//   return TruVideoReactTurboCoreSdk.multiply(a, b);
+// }
+
+export async function isAuthenticated(): Promise<boolean> {
+  try {
+    const response = await TruVideoReactTurboCoreSdk.isAuthenticated();
+
+    if (typeof response === "boolean") {
+      return response;
+    }
+
+    // Handle stringified boolean
+    if (typeof response === "string") {
+      return JSON.parse(response.toLowerCase());
+    }
+
+    console.error("Unexpected response type for isAuthenticated:", typeof response);
+    return false;
+  } catch (e) {
+    console.error("Failed to parse isAuthenticated response:", e);
+    return false;
+  }
 }
 
-export function isAuthenticated(): Promise<string> {
-  return TruVideoReactTurboCoreSdk.isAuthenticated();
-}
 
-export function isAuthenticationExpired(): Promise<string> {
-  return TruVideoReactTurboCoreSdk.isAuthenticationExpired();
+export async function isAuthenticationExpired(): Promise<boolean> {
+  try {
+    const response = await TruVideoReactTurboCoreSdk.isAuthenticationExpired();
+
+    if (typeof response === "boolean") {
+      return response;
+    }
+
+    // Handle stringified boolean
+    if (typeof response === "string") {
+      return JSON.parse(response.toLowerCase());
+    }
+
+    console.error("Unexpected response type for isAuthenticationExpired:", typeof response);
+    return false;
+  } catch (e) {
+    console.error("Failed to parse isAuthenticationExpired response:", e);
+    return false;
+  }
 }
 
 export function generatePayload(): Promise<string> {
