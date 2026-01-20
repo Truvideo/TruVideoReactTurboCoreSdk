@@ -1,0 +1,5 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -workspace TruVideoReactTurboCoreSdkExample.xcworkspace -scheme TruVideoReactTurboCoreSdkExample -configuration Debug -destination "platform=iOS Simulator,name=iPhone 15" clean build
+
+2026-01-20 17:23:59.332 xcodebuild[67627:706032] Writing error result bundle to /var/folders/x1/918dr3n51msd_q82s3yl2s340000gn/T/ResultBundle_2026-20-01_17-23-0059.xcresult
+xcodebuild: error: 'TruVideoReactTurboCoreSdkExample.xcworkspace' does not exist.
