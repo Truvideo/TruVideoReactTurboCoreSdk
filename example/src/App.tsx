@@ -7,7 +7,7 @@ import {
   isAuthenticationExpired,
   authenticate,
   initAuthentication,
-} from 'truvideo-react-turbo-core-sdk';
+} from '@trunpm/truvideo-react-turbo-core-sdk';
 import QuickCrypto from 'react-native-quick-crypto';
 
 

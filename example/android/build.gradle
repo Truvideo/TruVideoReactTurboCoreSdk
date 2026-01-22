@@ -2,20 +2,81 @@ buildscript {
     ext {
         buildToolsVersion = "35.0.0"
         minSdkVersion = 24
-        compileSdkVersion = 35
-        targetSdkVersion = 34
+        compileSdkVersion = 36
+        targetSdkVersion = 36
         ndkVersion = "26.1.10909125"
-        kotlinVersion = "1.9.24"
+        kotlinVersion = "1.9.25"
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle")
+        classpath("com.android.tools.build:gradle:8.9.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     }
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+// Make kotlinVersion available to all subprojects
+subprojects { subproject ->
+    // Set kotlinVersion in subproject's ext if not already set
+    if (!subproject.hasProperty("kotlinVersion")) {
+        subproject.ext.kotlinVersion = rootProject.ext.kotlinVersion
+    }
+}
+
+// Configure compileSdk for all subprojects to fix AGP 8.x compatibility
+subprojects { subproject ->
+    def configureAndroid = {
+        if (subproject.plugins.hasPlugin("com.android.library") || 
+            subproject.plugins.hasPlugin("com.android.application")) {
+            def android = subproject.extensions.findByName("android")
+            if (android != null) {
+                // AGP 8.x requires compileSdk instead of compileSdkVersion
+                try {
+                    // First, try to get the SDK version from compileSdkVersion if it exists
+                    def sdkVersion = null
+                    if (android.hasProperty("compileSdkVersion")) {
+                        try {
+                            sdkVersion = android.compileSdkVersion
+                        } catch (Exception e) {
+                            // compileSdkVersion might be a method, try calling it
+                            try {
+                                sdkVersion = android.compileSdkVersion()
+                            } catch (Exception e2) {
+                                // Use root project's compileSdkVersion as fallback
+                                sdkVersion = rootProject.ext.compileSdkVersion
+                            }
+                        }
+                    } else {
+                        sdkVersion = rootProject.ext.compileSdkVersion
+                    }
+                    
+                    // Set compileSdk if not already set
+                    if (!android.hasProperty("compileSdk") || android.compileSdk == null) {
+                        android.compileSdk = sdkVersion
+                    }
+                } catch (Exception e) {
+                    // Fallback: try to set compileSdk directly
+                    try {
+                        android.compileSdk = rootProject.ext.compileSdkVersion
+                    } catch (Exception e2) {
+                        // Ignore if we can't set it
+                    }
+                }
+            }
+        }
+    }
+    
+    // Try to configure immediately, or use afterEvaluate if project not yet evaluated
+    if (subproject.state.executed) {
+        // Project already evaluated, configure directly
+        configureAndroid()
+    } else {
+        // Project not yet evaluated, use afterEvaluate
+        subproject.afterEvaluate(configureAndroid)
+    }
+}

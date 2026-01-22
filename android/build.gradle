@@ -8,7 +8,7 @@ buildscript {
   }
 
   dependencies {
-    classpath "com.android.tools.build:gradle:7.2.1"
+    classpath "com.android.tools.build:gradle:8.9.1"
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
@@ -24,11 +24,13 @@ def isNewArchitectureEnabled() {
 }
 
 apply plugin: "com.android.library"
-apply plugin: "kotlin-android"
 
 if (isNewArchitectureEnabled()) {
   apply plugin: "com.facebook.react"
 }
+
+// Apply Kotlin plugin after React Native plugin to avoid compatibility issues
+apply plugin: "kotlin-android"
 
 def getExtOrDefault(name) {
   return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties["TruVideoReactTurboCoreSdk_" + name]
@@ -58,7 +60,10 @@ android {
     }
   }
 
-  compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
+  def sdkVersion = getExtOrIntegerDefault("compileSdkVersion")
+  // AGP 8.x requires compileSdk instead of compileSdkVersion
+  compileSdk = sdkVersion
+  compileSdkVersion sdkVersion
 
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
@@ -82,8 +87,13 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = "17"
+    freeCompilerArgs += ["-Xskip-metadata-version-check"]
   }
 
   sourceSets {
@@ -111,7 +121,8 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation 'com.github.Truvideo:truvideo-sdk-android-core:78.1.1'
+  implementation 'com.github.Truvideo:truvideo-sdk-android-core:79.1.1'
+  implementation 'androidx.annotation:annotation:1.7.0'
 }
 
 if (isNewArchitectureEnabled()) {

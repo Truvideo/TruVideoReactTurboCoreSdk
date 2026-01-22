@@ -16,13 +16,9 @@ import React
   }
   
   @objc public func isAuthenticated(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-    do {
-      let isAuthenticated = try TruvideoSdk.isAuthenticated()
+    let isAuthenticated = TruvideoSdk.isAuthenticated
  //     print("isAuthenticated", isAuthenticated)
-      resolve(isAuthenticated)
-    } catch _ {
-      resolve(false)
-    }
+    resolve(isAuthenticated)
   }
   
   @objc public func isAuthenticationExpired(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
