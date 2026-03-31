@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,cpp,swift}"
   s.private_header_files = "ios/**/*.h"
 #  s.static_framework = false
- s.vendored_frameworks = ['ios/xcframeworks/AWSCognitoIdentityProvider.xcframework','ios/xcframeworks/AWSCognitoIdentityProviderASF.xcframework','ios/xcframeworks/AWSCore.xcframework','ios/xcframeworks/AWSS3.xcframework','ios/xcframeworks/shared.xcframework','ios/xcframeworks/TruvideoSdk.xcframework']
+ s.vendored_frameworks = ['ios/xcframeworks/AWSCognitoIdentityProvider.xcframework','ios/xcframeworks/AWSCognitoIdentityProviderASF.xcframework','ios/xcframeworks/AWSCore.xcframework','ios/xcframeworks/AWSS3.xcframework','ios/xcframeworks/shared.xcframework']
 #  s.dependency "truvideo-sdk-core" , "79.0.0"
 #  # s.static_framework = true
 
