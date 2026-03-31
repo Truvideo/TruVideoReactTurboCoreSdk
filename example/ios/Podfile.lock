@@ -1,12 +1,4 @@
 PODS:
-  - AWSCognitoIdentityProvider (2.41.0):
-    - AWSCognitoIdentityProviderASF (= 2.41.0)
-    - AWSCore (= 2.41.0)
-  - AWSCognitoIdentityProviderASF (2.41.0):
-    - AWSCore (= 2.41.0)
-  - AWSCore (2.41.0)
-  - AWSS3 (2.41.0):
-    - AWSCore (= 2.41.0)
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.76.5)
@@ -1562,19 +1554,7 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - truvideo-sdk-core (= 79.0.0)
     - Yoga
-  - truvideo-sdk-core (79.0.0):
-    - AWSCognitoIdentityProvider
-    - AWSCognitoIdentityProviderASF
-    - AWSCore
-    - AWSS3
-    - truvideo-sdk-core/Core (= 79.0.0)
-  - truvideo-sdk-core/Core (79.0.0):
-    - AWSCognitoIdentityProvider
-    - AWSCognitoIdentityProviderASF
-    - AWSCore
-    - AWSS3
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -1648,13 +1628,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AWSCognitoIdentityProvider
-    - AWSCognitoIdentityProviderASF
-    - AWSCore
-    - AWSS3
     - OpenSSL-Universal
     - SocketRocket
-    - truvideo-sdk-core
 
 EXTERNAL SOURCES:
   boost:
@@ -1790,10 +1765,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AWSCognitoIdentityProvider: b7e2471bec75137ce392b9a8c60f3cee465c61bd
-  AWSCognitoIdentityProviderASF: d26fedd80485c2f0f308741e02c4a9093921ad22
-  AWSCore: ee7594bda3132cde8666328bf9a09d8770c1c100
-  AWSS3: 50da7408a26c1c2886d02968807f2a0b6bf936ca
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   FBLazyVector: 1bf99bb46c6af9a2712592e707347315f23947aa
@@ -1859,8 +1830,7 @@ SPEC CHECKSUMS:
   ReactCodegen: 3a68408bf68d0957abcd13d610f76420005c1d91
   ReactCommon: 5809a8ee421b7219221a475b78180f8f34b5c5ec
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  truvideo-react-turbo-core-sdk: f98aaa22d898305fba823ba8ad64646b57eeed70
-  truvideo-sdk-core: 7cd954acfcc667eefe569c7ff773a04ccafa0402
+  truvideo-react-turbo-core-sdk: 9d9d85a936b76658ab7071e802ffa0c68230e6c0
   Yoga: fcc198acd4a55599b3468cfb6ebc526baff5f06e
 
 PODFILE CHECKSUM: 3121ff3491f5d948582d561c5af3887516048fd9
