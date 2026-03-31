@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import TruvideoSdk
+import TrueVideo
 import React
 
 @objc final public class TruVideoReactTurboCoreSDKClass: NSObject {
