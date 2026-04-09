@@ -1,6 +1,6 @@
 #import "TruVideoReactTurboCoreSdk.h"
 #import "truvideo_react_turbo_core_sdk-Swift.h"
-#import "TruvideoSdk/TruvideoSdk-Swift.h"
+//#import "TruvideoSdk/TruvideoSdk-Swift.h"
 #import "TruvideoSdk/TruvideoSdk.h"
 
 @implementation TruVideoReactTurboCoreSdk

@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/anuragSingh5exceptions/TruVideoReactTurboCoreSdk.git", :tag => "#{s.version}" }
   s.source_files = "ios/**/*.{h,m,mm,cpp,swift}"
   s.private_header_files = "ios/**/*.h"
-#  s.static_framework = false
+  #  s.static_framework = false
   # s.vendored_frameworks = ['ios/xcframeworks/AWSCognitoIdentityProvider.xcframework','ios/xcframeworks/AWSCognitoIdentityProviderASF.xcframework','ios/xcframeworks/AWSCore.xcframework','ios/xcframeworks/AWSS3.xcframework','ios/xcframeworks/shared.xcframework','ios/xcframeworks/TruvideoSdk.xcframework']
     s.vendored_frameworks = [
   'ios/xcframeworks/AWSCognitoIdentityProvider.xcframework',
@@ -28,10 +28,11 @@ Pod::Spec.new do |s|
   'ios/xcframeworks/Networking.xcframework',
   'ios/xcframeworks/StorageKit.xcframework',
   'ios/xcframeworks/TruVideoApi.xcframework',
+  'ios/xcframeworks/TruVideoRuntime.xcframework',
   'ios/xcframeworks/TruVideoFoundation.xcframework'
-]
-#  s.dependency "truvideo-sdk-core" , "79.0.0"
-#  # s.static_framework = true
+  ]
+  #  s.dependency "truvideo-sdk-core" , "79.0.0"
+  #  # s.static_framework = true
 
   # s.dependency 'truvideo-sdk-core-pod', '~> 1.0.0'
   # s.dependency 'AWSS3'
