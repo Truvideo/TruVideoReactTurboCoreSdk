@@ -122,6 +122,38 @@ import React
     }
   }
   
+    @objc public func authenticateWithOtp(otp: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+        ensureConfigured()
+        
+        let trimmedOtp = otp.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard !trimmedOtp.isEmpty else {
+            reject("AUTHENTICATION_FAILED", "OTP cannot be empty", nil)
+            return
+        }
+        
+        print("[TruVideoSDK] authenticateWithOtp called")
+        
+        Task {
+            do {
+                try await TruvideoSdk.authenticate(otp: trimmedOtp)
+                
+                let authenticated = TruvideoSdk.isAuthenticated
+                guard authenticated else {
+                    reject("AUTHENTICATION_OTP_FAILED", "OTP authentication failed", nil)
+                    return
+                }
+                
+                print("[TruVideoSDK] authenticateWithOtp success")
+                resolve("Authentication successful")
+            } catch let error {
+                let errorMessage = "OTP authentication failed: \(error.localizedDescription)"
+                print("[TruVideoSDK] authenticateWithOtp error: \(errorMessage)")
+                reject("AUTHENTICATION_OTP_FAILED", errorMessage, error)
+            }
+        }
+    }
+    
   @objc public func clearAuthentication(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     ensureConfigured()
     

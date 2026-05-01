@@ -57,4 +57,9 @@ RCT_EXPORT_MODULE()
   return std::make_shared<facebook::react::NativeTruVideoReactTurboCoreSdkSpecJSI>(params);
 }
 
+- (void)authenticateWithOtp:(NSString *)otp resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
+    TruVideoReactTurboCoreSDKClass *tvrtcsc = [[TruVideoReactTurboCoreSDKClass alloc] init];
+    [tvrtcsc authenticateWithOtpWithOtp:otp resolve:resolve reject:reject];
+}
+
 @end
