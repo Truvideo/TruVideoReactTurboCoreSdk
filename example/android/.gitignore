@@ -1,0 +1,6 @@
+
+# Gradle user home cache
+example/android/.gradle-user-home/
+example/android/.gradle/
+**/.gradle-user-home/
+*.class
