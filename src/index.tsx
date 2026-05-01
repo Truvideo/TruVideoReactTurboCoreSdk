@@ -7,20 +7,12 @@ import TruVideoReactTurboCoreSdk from './NativeTruVideoReactTurboCoreSdk';
 export async function isAuthenticated(): Promise<boolean> {
   try {
     const response = await TruVideoReactTurboCoreSdk.isAuthenticated();
-
-    if (typeof response === "boolean") {
-      return response;
-    }
-
-    // Handle stringified boolean
-    if (typeof response === "string") {
-      return JSON.parse(response.toLowerCase());
-    }
-
-    console.error("Unexpected response type for isAuthenticated:", typeof response);
+    if (typeof response === 'boolean') return response;
+    if (typeof response === 'string') return JSON.parse(response.toLowerCase());
+    console.error('Unexpected response type for isAuthenticated:', typeof response);
     return false;
   } catch (e) {
-    console.error("Failed to parse isAuthenticated response:", e);
+    console.error('Failed to parse isAuthenticated response:', e);
     return false;
   }
 }
@@ -71,4 +63,17 @@ export function authenticate(
 
 export function clearAuthentication(): Promise<string> {
   return TruVideoReactTurboCoreSdk.clearAuthentication();
+}
+
+export function generateOtp(
+  baseUrl: string,
+  apiKey: string,
+  secret: string,
+  externalId: string
+): Promise<string> {
+  return TruVideoReactTurboCoreSdk.generateOtp(baseUrl, apiKey, secret, externalId);
+}
+
+export function authenticateWithOtp(otp: string): Promise<string> {
+  return TruVideoReactTurboCoreSdk.authenticateWithOtp(otp);
 }

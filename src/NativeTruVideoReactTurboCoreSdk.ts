@@ -14,6 +14,15 @@ export interface Spec extends TurboModule {
     externalId: string
   ): Promise<string>;
   clearAuthentication(): Promise<string>;
+
+  generateOtp(
+    baseUrl: string,
+    apiKey: string,
+    secret: string,
+    externalId: string
+  ): Promise<string>;
+  authenticateWithOtp(otp: string): Promise<string>;
+
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>(
