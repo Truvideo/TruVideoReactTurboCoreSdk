@@ -118,7 +118,7 @@ class TruVideoReactTurboCoreSdkModule(reactContext: ReactApplicationContext) :
   // -------------------------------------------------------
 
   @ReactMethod
-  fun generateOtp(
+  override fun generateOtp(
     baseUrl: String,
     apiKey: String,
     secret: String,
@@ -195,7 +195,7 @@ class TruVideoReactTurboCoreSdkModule(reactContext: ReactApplicationContext) :
   // -------------------------------------------------------
 
   @ReactMethod
-  fun authenticateWithOtp(otp: String, promise: Promise) {
+  override fun authenticateWithOtp(otp: String, promise: Promise) {
     scope.launch {
       try {
         if (otp.isBlank()) throw IllegalArgumentException("OTP cannot be empty")
